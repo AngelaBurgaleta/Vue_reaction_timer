@@ -1,13 +1,32 @@
 <template>
   <h1>Angela Reaction Timer</h1>
-</template>
+  <button @click="start" :disabled="isPlaying">Play</button>
+  <Block v-if="isPlaying" :delay="delay" />
+</template> 
 
 <script>
 
+import Block from './components/Block.vue'
+//añadir un boton para empezar a jugar
+//metodo start
+//propiedades en data estajugando delay 
 
 export default {
   name: 'App',
- 
+  components: { Block },
+  data() {
+    return {
+      isPlaying: false,
+      delay: null,
+    }
+  },
+  methods: {
+    start() {
+      this.delay = 2000 + Math.random() * 5000
+      this.isPlaying = true
+      console.log(this.delay)
+    }
+  }
 }
 </script>
 
